@@ -1,0 +1,173 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container{
+    background: lightgrey;
+    width: 500px;
+    height: 750px;
+    outline: 5px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#guillotine{
+    position: relative;
+    width: 450px;
+    height: 300px;
+    outline: 5px solid black;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#base{
+    position: relative;
+    width: 400px;
+    outline: 4px solid black;
+    top: 270px;
+    left: 25px;
+}
+
+#platform{
+    position: relative;
+    left:150px;
+    top: 206px;
+    height: 60px;
+    width: 150px;
+    border: 15px solid black;
+    border-bottom: 0;
+}
+
+#post{
+    position: relative;
+    width: 75px;
+    top: -20px;
+    height: 170px;
+    border-right: 10px solid black;
+    border-left: 10px solid black;
+    left: 185px;
+}
+
+#bar{
+    position: relative;
+    top: -190px;
+    width: 145px;
+    height: 10px;
+    border-top: 10px solid black;
+    left: 150px;
+}
+
+#hole{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    outline: 4px solid black;
+    border-radius: 50%;
+    left: 207px;
+    bottom: 70px;
+}
+
+#hole::after{
+    position: absolute;
+    content: "";
+    top: -15px;
+    right: -15px;
+    width: 60px;
+    border-top: 5px solid black;
+}
+
+#blade{
+    position: relative;
+    top: -210px;
+    left: 200px;
+    width: 0px;
+    height: 0px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid grey;
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid grey;
+    animation: .5s ease-in decapitate infinite;
+}
+
+#blade::after{
+    position: absolute;
+    top: -31px;
+    content:"";
+    height: 10px;
+    outline: 2px solid black;
+}
+
+#man{
+    top: -145px;
+    left: 197px;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    animation: 2s linear roll infinite;
+}
+#man img{
+    width: 100%;
+}
+
+@keyframes roll{
+    0%{top: -150px; rotate: 0deg;}
+    50%{top: -90px; left: 197px;}
+    100%{left: 250px; top: -90px; rotate: 360deg;}
+}
+
+@keyframes decapitate{
+    0%{top: -210px;}
+    100%{top: -100px;}
+}
+
+#letters{
+    width: 450px;
+    margin-bottom: 50px;
+    height: 150px;
+    outline: 5px solid black;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-family: monospace;
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 20px;
+}
+#input{
+    padding: 20px;
+    width: 450px;
+    height: 225px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+#input *{
+    width: 40px;
+    height: 35px;
+    background-color: grey;
+    text-align: center;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.75rem;
+    user-select: none;
+    outline: 2px solid black;
+    border-radius: 2px;
+    color: white;
+}
+#input *:hover{
+    color: black;
+    background-color: lightgrey;
+}
