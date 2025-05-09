@@ -21,6 +21,21 @@ const words =["apple", "banana", "cherry", "grape", "orange", "peach", "lemon", 
   "pho", "biryani", "curry", "dal", "naan", "roti", "samosa", "tikka", "masala", "paneer",
   "pakora", "vindaloo", "korma", "bento", "sushi", "tempura", "teriyaki", "yakitori", "miso", "tofu"];
 
+
+
+
+
+class Game{
+    constructor(guesses, word, stage){
+        this.guesses = guesses;
+        this.word = word;
+        this.stage = stage;
+    }
+}
+
+class Pl
+
+
 const guesses = document.getElementById('letters');
 let stage = 0;
 
