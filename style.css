@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 body{
@@ -15,7 +16,7 @@ body{
 #container{
     background: lightgrey;
     width: 500px;
-    height: 750px;
+    height: 720px;
     outline: 5px solid black;
     border-radius: 20px;
     display: flex;
@@ -30,6 +31,7 @@ body{
     outline: 5px solid black;
     background-color: white;
     border-radius: 20px;
+    user-select: none;
 }
 
 #base{
@@ -129,13 +131,13 @@ body{
 
 @keyframes decapitate{
     0%{top: -210px;}
-    100%{top: -100px;}
+    100%{top: -85px;}
 }
 
 #letters{
     width: 450px;
-    margin-bottom: 50px;
-    height: 150px;
+    margin-bottom: 20px;
+    height: 70px;
     outline: 5px solid black;
     background-color: white;
     border-radius: 20px;
@@ -170,4 +172,23 @@ body{
 #input *:hover{
     color: black;
     background-color: lightgrey;
+    transition: .05;
+}
+#input *:active{
+    background-color: white;
+    box-shadow: 0 0 15px black;
+}
+#reset{
+    width: 50px;
+    height: 50px;
+    background-color: orange;
+    outline: 3px solid black;
+    box-shadow: 0 0 10px black;
+    border-radius: 40%;
+}
+#reset:hover{
+    background-color: rgb(255, 177, 32);
+}
+#reset:active{
+    background-color: rgb(255, 195, 82);
 }
