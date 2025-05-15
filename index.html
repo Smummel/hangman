@@ -8,7 +8,8 @@
 </head>
 <body>
     <div id="container">
-        <div id="letters">ABC</div>
+        <div id="letters">TAKE A GUESS</div>
+        <div id="reveal"></div>
         <div id="guillotine">
             <div id="base"></div>           <!--1-->
             <div id="platform"></div>       <!--2-->
@@ -19,34 +20,34 @@
             <div id="man"><img src="head.png" alt=""></div> <!--7   -->
         </div>
         <div id="input">
-            <div onclick="guess('A')">A</div>
-            <div onclick="guess('B')">B</div>
-            <div onclick="guess('C')">C</div>
-            <div onclick="guess('D')">D</div>
-            <div onclick="guess('E')">E</div>
-            <div onclick="guess('F')">F</div>
-            <div onclick="guess('G')">G</div>
-            <div onclick="guess('H')">H</div>
-            <div onclick="guess('I')">I</div>
-            <div onclick="guess('J')">J</div>
-            <div onclick="guess('K')">K</div>
-            <div onclick="guess('L')">L</div>
-            <div onclick="guess('M')">M</div>
-            <div onclick="guess('N')">N</div>
-            <div onclick="guess('O')">O</div>
-            <div onclick="guess('P')">P</div>
-            <div onclick="guess('Q')">Q</div>
-            <div onclick="guess('R')">R</div>
-            <div onclick="guess('S')">S</div>
-            <div onclick="guess('T')">T</div>
-            <div onclick="guess('U')">U</div>
-            <div onclick="guess('V')">V</div>
-            <div onclick="guess('W')">W</div>
-            <div onclick="guess('X')">X</div>
-            <div onclick="guess('Y')">Y</div>
-            <div onclick="guess('Z')">Z</div>
+            <div onclick="game.guess('A')">A</div>
+            <div onclick="game.guess('B')">B</div>
+            <div onclick="game.guess('C')">C</div>
+            <div onclick="game.guess('D')">D</div>
+            <div onclick="game.guess('E')">E</div>
+            <div onclick="game.guess('F')">F</div>
+            <div onclick="game.guess('G')">G</div>
+            <div onclick="game.guess('H')">H</div>
+            <div onclick="game.guess('I')">I</div>
+            <div onclick="game.guess('J')">J</div>
+            <div onclick="game.guess('K')">K</div>
+            <div onclick="game.guess('L')">L</div>
+            <div onclick="game.guess('M')">M</div>
+            <div onclick="game.guess('N')">N</div>
+            <div onclick="game.guess('O')">O</div>
+            <div onclick="game.guess('P')">P</div>
+            <div onclick="game.guess('Q')">Q</div>
+            <div onclick="game.guess('R')">R</div>
+            <div onclick="game.guess('S')">S</div>
+            <div onclick="game.guess('T')">T</div>
+            <div onclick="game.guess('U')">U</div>
+            <div onclick="game.guess('V')">V</div>
+            <div onclick="game.guess('W')">W</div>
+            <div onclick="game.guess('X')">X</div>
+            <div onclick="game.guess('Y')">Y</div>
+            <div onclick="game.guess('Z')">Z</div>
         </div>
-        <div id="reset" onclick="reset()"></div>
+        <div id="reset" onclick="game.reset()"></div>
     </div>
 <script src="hangmangame.js"></script>
 </body>
