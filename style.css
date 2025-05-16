@@ -34,6 +34,7 @@ body{
     background-color: white;
     border-radius: 20px;
     user-select: none;
+    box-shadow: 0 0 15px black;
 }
 
 #base{
@@ -163,6 +164,7 @@ body{
     font-size: 3rem;
     font-weight: bold;
     padding: 20px;
+    box-shadow: 0 0 15px black;
 }
 #input{
     padding: 10px;
@@ -183,6 +185,7 @@ body{
     outline: 2px solid black;
     border-radius: 2px;
     color: white;
+    box-shadow: 0 0 5px black;
 }
 #input *:hover{
     color: black;
@@ -211,7 +214,7 @@ body{
 #reveal{
     width: 450px;
     height: 75px;
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-align: center;
     margin: 15px;
     outline: 5px solid black;
@@ -222,4 +225,5 @@ body{
     justify-content: center;
     background-color: lime;
     font-family: monospace;
+    box-shadow: 0 0 15px black;
 }
