@@ -11,18 +11,20 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: black;
 }
 
 #container{
     background: lightgrey;
     width: 500px;
-    height: 720px;
+    height: 775px;
     outline: 5px solid black;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    box-shadow: 0 0 150px 5px red;
 }
 #guillotine{
     position: relative;
@@ -40,6 +42,7 @@ body{
     outline: 4px solid black;
     top: 270px;
     left: 25px;
+    opacity: 0;
 }
 
 #platform{
@@ -50,6 +53,7 @@ body{
     width: 150px;
     border: 15px solid black;
     border-bottom: 0;
+    opacity: 0;
 }
 
 #post{
@@ -60,6 +64,7 @@ body{
     border-right: 10px solid black;
     border-left: 10px solid black;
     left: 185px;
+    opacity: 0;
 }
 
 #bar{
@@ -69,6 +74,7 @@ body{
     height: 10px;
     border-top: 10px solid black;
     left: 150px;
+    opacity: 0;
 }
 
 #hole{
@@ -79,6 +85,7 @@ body{
     border-radius: 50%;
     left: 207px;
     bottom: 70px;
+    opacity: 0;
 }
 
 #hole::after{
@@ -100,12 +107,13 @@ body{
     border-right: 20px solid grey;
     border-bottom: 20px solid transparent;
     border-top: 20px solid grey;
+    opacity: 0;
 }
 .decapitate{
-    animation: .5s ease-in decapitate;
+    animation: .55s ease-in decapitate forwards;
 }
 .roll{
-    animation: 2s linear roll; 
+    animation: 2s linear roll forwards; 
 }
 
 #blade::after{
@@ -122,20 +130,23 @@ body{
     position: relative;
     width: 50px;
     height: 50px;
+    opacity: 0;
 }
 #man img{
     width: 100%;
 }
 
+
+/*klasser för animation*/
 @keyframes roll{
     0%{top: -150px; rotate: 0deg;}
-    50%{top: -90px; left: 197px;}
-    100%{left: 250px; top: -90px; rotate: 360deg;}
+    20%{top: -90px; left: 197px;}
+    100%{left: 280px; top: -90px; rotate: 540deg;}
 }
 
 @keyframes decapitate{
     0%{top: -210px;}
-    100%{top: -85px;}
+    100%{top: -90px;}
 }
 
 #letters{
@@ -198,13 +209,17 @@ body{
     background-color: rgb(255, 195, 82);
 }
 #reveal{
-    width: 400px;
-    height: 50px;
+    width: 450px;
+    height: 75px;
     font-size: 3rem;
     text-align: center;
-    margin: 10px;
+    margin: 15px;
+    outline: 5px solid black;
+    border-radius: 20px;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: lime;
+    font-family: monospace;
 }

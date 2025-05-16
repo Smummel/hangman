@@ -1,0 +1,9 @@
+gamer
+hangman
+xbox
+teknik
+malaco
+sprite
+fanta
+cola
+pepsi

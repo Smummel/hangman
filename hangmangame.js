@@ -1,26 +1,22 @@
-
-const words =["apple", "banana", "cherry", "grape", "orange", "peach", "lemon", "mango", "kiwi", "plum",
-  "apricot", "blueberry", "coconut", "fig", "guava", "lime", "melon", "nectarine", "papaya", "pear",
-  "pineapple", "raspberry", "strawberry", "tangerine", "watermelon", "avocado", "blackberry", "cranberry", "date", "elderberry",
-  "gooseberry", "jackfruit", "kumquat", "lychee", "mandarin", "olive", "passionfruit", "persimmon", "pomegranate", "quince",
-  "tomato", "zucchini", "carrot", "broccoli", "cabbage", "cauliflower", "celery", "corn", "cucumber", "eggplant",
-  "garlic", "kale", "lettuce", "mushroom", "onion", "pea", "pepper", "potato", "pumpkin", "radish",
-  "spinach", "squash", "turnip", "yam", "artichoke", "arugula", "beet", "chard", "chicory", "collard",
-  "daikon", "edamame", "endive", "fennel", "horseradish", "jicama", "leek", "okra", "parsnip", "rhubarb",
-  "shallot", "watercress", "wasabi", "asparagus", "bean", "bamboo", "brussels", "cassava", "chili", "escarole",
-  "ginger", "lentil", "mustard", "pea", "soybean", "sweetcorn", "taro", "yam", "zest", "basil",
-  "cinnamon", "clove", "coriander", "cumin", "dill", "mint", "nutmeg", "oregano", "paprika", "parsley",
-  "rosemary", "saffron", "sage", "salt", "tarragon", "thyme", "turmeric", "vanilla", "wasabi", "bay",
-  "chervil", "fenugreek", "galangal", "lavender", "lemongrass", "mace", "marjoram", "savory", "star", "anise",
-  "caraway", "caper", "cardamom", "aniseed", "ginseng", "hibiscus", "juniper", "licorice", "mallow", "peppermint",
-  "sarsaparilla", "spearmint", "stevia", "tamari", "vervain", "wildrice", "wheat", "rye", "barley", "oats",
-  "millet", "quinoa", "sorghum", "spelt", "teff", "triticale", "amaranth", "buckwheat", "durum", "farro",
-  "freekeh", "kamut", "emmer", "einkorn", "maize", "semolina", "bran", "germ", "groats", "grits",
-  "muesli", "pasta", "noodle", "spaghetti", "fettuccine", "macaroni", "penne", "rigatoni", "tagliatelle", "vermicelli",
-  "ravioli", "lasagna", "tortellini", "gnocchi", "dumpling", "pierogi", "wonton", "soba", "udon", "ramen",
-  "pho", "biryani", "curry", "dal", "naan", "roti", "samosa", "tikka", "masala", "paneer",
-  "pakora", "vindaloo", "korma", "bento", "sushi", "tempura", "tofu"];
-
+let words =[];
+function loadWords(callback) {
+    fetch('words.txt')
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(text) {
+            let lines = text.split('\n');
+            let cleanWords = [];
+            for (let i = 0; i < lines.length; i++) {
+                let word = lines[i].trim().toUpperCase();
+                if (word.length > 0) {
+                    cleanWords.push(word);
+                }
+            }
+            words = cleanWords;
+            callback();
+        });
+}
 
 /*guillotine html parts*/
 
@@ -32,31 +28,44 @@ const hole = document.getElementById('hole');
 const blade = document.getElementById('blade');
 const man = document.getElementById('man');
 
+/*delay funktion */
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
 const guesses = document.getElementById('letters');
-let revealedletters = document.getElementById('reveal');
+const revealedletters = document.getElementById('reveal');
+
+/*LJUD*/
+let bass = new Audio('sfx/bass.ogg');
+let sword = new Audio('sfx/sword.ogg');
+let victory = new Audio('sfx/victory.ogg');
+let correct = new Audio('sfx/correct.ogg');
 
 class Game{
     constructor(word="", stage=0){
-        this.word = word;
-        this.stage = stage;
-        this.letters = word.split('');
-        this.revealed = [];
+        this.word = word;   /*ordet som valts*/
+        this.stage = stage;     /*Hur många felgissningar man gjort*/
+        this.letters = word.split('');  //en array med alla bokstäver
+        this.revealed = []; //ord som har gissats rätt
     }
-
+    
+    //väljer ett nytt ord
     chooseword(){
         let random = Math.floor(Math.random() * words.length);
         this.word = words[random].toUpperCase();
         this.letters = this.word.split('');
     }
 
+    //startar om spelet
     reset(){
         guesses.innerHTML = '';
+        revealedletters.innerHTML = 'GUESS THE WORD!'
         this.stage = 0;
+        this.chooseword();
+        this.revealed = [];
 
+        /*Sätter alla delar osynliga*/
         base.style.opacity = 0;
         platform.style.opacity = 0;
         post.style.opacity = 0;
@@ -64,10 +73,15 @@ class Game{
         hole.style.opacity = 0;
         blade.style.opacity = 0;
         man.style.opacity = 0;
-
+        bass.play();
+        //resettar animationer
+        blade.classList="";
+        man.classList="";
+        
     }
 
     nextstage(){
+        //sätter de olika delarna synliga beroende på hur många fel man gissat
         if(this.stage==1){base.style.opacity = 1;}
         if(this.stage==2){platform.style.opacity = 1;}
         if(this.stage==3){post.style.opacity = 1;}
@@ -76,16 +90,14 @@ class Game{
         if(this.stage==6){blade.style.opacity = 1;}
         if(this.stage==7){man.style.opacity = 1;}
         if(this.stage==8){
+            guesses.innerHTML = 'YOU DIED!';
             blade.classList="decapitate";
             delay(500).then(() => man.classList="roll");
-            delay(2000).then(() => alert('Du dog X_X'));
-            delay(3000).then(() => this.reset());
-            delay(3000).then(() => blade.classList="");
-            delay(3000).then(() => man.classList="");
+            delay(400).then(() => sword.play());
         }
         
     }
-
+    //skapar sträng för de bokstäver som gissats rätt, andra bokstäver skrivs med "_"
     updateReveal(){
         let reveal = "";
         for(let i=0;i<this.letters.length;i++){
@@ -99,26 +111,40 @@ class Game{
         revealedletters.innerHTML = reveal;
     }
 
+    //detta händer varje gång man gör en gissning
     guess(letter){
-        if(this.letters.includes(letter)){
-            if(this.revealed.includes(letter)){} else{this.revealed.push(letter);}
-            console.log(this.revealed);
-            this.updateReveal()
+        if(guesses.innerHTML=='YOU DIED!'){
+            //man ska inte kunna gissa mer om man har förlorat 
+        } else if(guesses.innerHTML=='CONGRATULATIONS!'){
+            //eller vunnit
         } else{
-            this.stage+=1;
-            this.nextstage();
-            guesses.innerHTML+=letter;
-        } 
+            if(this.letters.includes(letter)){
+                if(this.revealed.includes(letter)){} else{this.revealed.push(letter);}
+                correct.play();
+                this.updateReveal();
+                this.checkIfComplete();
+            } else{
+                this.stage+=1;
+                guesses.innerHTML+=letter;
+                this.nextstage();
+            } 
+            this.updateReveal();
+        }
     }
-    
+
+    checkIfComplete(){
+        if(revealedletters.innerHTML.includes('_')){
+
+        } else{
+            //om det inte finns några "_" i strängen så har alla bokstäver gissats, och man vinner
+            guesses.innerHTML="CONGRATULATIONS!";
+            victory.play();
+        }
+    }
 }
-
-
 
 const game = new Game();
 
-game.chooseword();
-
-console.log(game.word);
-
-console.log(game);
+loadWords(function() {
+    game.chooseword(); //väntar på att alla ord är hämtade, sedan kör choosewords
+});
